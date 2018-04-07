@@ -1,0 +1,267 @@
+Building configuration...
+
+Current configuration : 6769 bytes
+!
+! Last configuration change at 00:39:07 JST Thu Mar 29 2018
+! NVRAM config last updated at 00:40:29 JST Thu Mar 29 2018
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service unsupported-transceiver
+!
+hostname Cisco3750g
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+clock timezone JST 9
+switch 1 provision ws-c3750g-24ts-1u
+system mtu routing 1500
+ip routing
+no ip dhcp conflict logging
+ip dhcp excluded-address 192.168.77.254
+ip dhcp excluded-address 192.168.77.1
+ip dhcp excluded-address 192.168.77.17
+ip dhcp excluded-address 192.168.77.23
+ip dhcp excluded-address 192.168.77.34
+ip dhcp excluded-address 192.168.77.45
+ip dhcp excluded-address 192.168.77.58
+ip dhcp excluded-address 192.168.77.253
+!
+ip dhcp pool dhcp77
+   network 192.168.77.0 255.255.255.0
+   default-router 192.168.77.254
+   dns-server 103.247.181.129 8.8.8.8
+   lease 7
+!
+ip dhcp pool dhcp88
+   network 192.168.88.0 255.255.255.0
+   default-router 192.168.88.254
+   dns-server 192.168.88.254
+   lease 7
+!
+ip dhcp pool dhcp10
+   network 10.0.0.0 255.255.255.0
+   default-router 10.0.0.254
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1183256192
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1183256192
+ revocation-check none
+ rsakeypair TP-self-signed-1183256192
+!
+!
+crypto pki certificate chain TP-self-signed-1183256192
+ certificate self-signed 01
+  30820243 308201AC A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31313833 32353631 3932301E 170D3933 30333031 30303032
+  33325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 31383332
+  35363139 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100D462 A04358B1 B2A4F5DF E11444F0 05A9FDE7 BF819255 97CA7E1A 186C0FD9
+  829F545D FC246E3A EBF3EAB6 DA76A680 E7E71B93 015397AC 043FD074 87280F9E
+  9E05FF81 2A1ED675 0051025C 96C8CF79 42586629 CD11E0A0 BD2A3205 C89D5A58
+  F053308D CDA2CBCE 70BA9D6C EF341D2C 1C7D1ADE 84ABBEB1 0C525331 2983DF06
+  83EB0203 010001A3 6B306930 0F060355 1D130101 FF040530 030101FF 30160603
+  551D1104 0F300D82 0B436973 636F3337 3530672E 301F0603 551D2304 18301680
+  14E0B75B 7E6B3878 F3C0D286 B9264B74 4E47CEEC EA301D06 03551D0E 04160414
+  E0B75B7E 6B3878F3 C0D286B9 264B744E 47CEECEA 300D0609 2A864886 F70D0101
+  04050003 81810057 BD12A7D3 3F0A958A 2A55B30E 120D65DA 703404EA B4F75A25
+  27EDE183 E6CC7DFC 4FD8F626 909A4E1F D1C9063B 7DAE8FD8 3021B30C 7955B2FD
+  C5424320 76F031FA A15B775B 2B563CBD EDA08289 B1901D91 AE353EFF AECFB0AE
+  0B8C454E 145CDEFF B5B4F27E F4F69594 3EBFB9BC 71AC2913 8C892D67 33A8913F
+  7B4B82A8 64B650
+  quit
+!
+!
+!
+no errdisable detect cause gbic-invalid
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 50 priority 4096
+spanning-tree vlan 77 priority 0
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/2
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,50,77,88
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/4
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,50,77,88
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/6
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,50,77,88
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/8
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,50,77,88
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/10
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,50,77,88
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 77
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 77
+ switchport trunk encapsulation dot1q
+ switchport mode access
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/15
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/16
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/18
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/19
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/20
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/21
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 20
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 50,77
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/25
+ switchport access vlan 77
+ switchport mode access
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.0.0.253 255.255.255.0
+!
+interface Vlan20
+ ip address dhcp
+!
+interface Vlan50
+ ip address 192.168.1.253 255.255.255.0
+!
+interface Vlan77
+ ip address 192.168.77.253 255.255.255.0
+!
+interface Vlan88
+ ip address 192.168.88.253 255.255.255.0
+!
+interface Vlan100
+ ip address 192.168.100.253 255.255.255.0
+!
+router ospf 1
+ log-adjacency-changes
+ network 192.168.77.0 0.0.0.255 area 0
+!
+ip classless
+ip route 192.168.1.0 255.255.255.0 192.168.1.254
+ip route 192.168.77.0 255.255.255.0 192.168.77.254
+ip route 192.168.88.0 255.255.255.0 192.168.88.254
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+ntp clock-period 36029096
+ntp server 133.243.238.243 prefer
+end
